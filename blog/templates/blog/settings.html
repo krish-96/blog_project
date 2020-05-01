@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+{% block title %} {{ author.name | upper }} Account Settings  {% endblock %}
+{% block content %}
+<
+<div style="color:#FFF;">
+    <div class="row">
+        <div class="col col-12 col-md-4 ">
+            <div class="card bg-primary ">
+                <h4 class="card-header">Account Settings</h4>
+                <div class="card-body">
+                    {{author.name}}
+                </div>
+            </div>
+        </div>
+        <div class="col col-12 col-md-4">
+            <div class="card bg-primary ">
+                <h4 class="card-header">Account Settings</h4>
+                <div class="card-body">
+                    {{author.name}}
+                </div>
+            </div>
+        </div>
+        <div class="col col-12 col-md-4">
+            <div class="card bg-primary ">
+                <h4 class="card-header">Account Settings</h4>
+                <div class="card-body">
+                    {{author.name}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

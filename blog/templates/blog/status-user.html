@@ -1,0 +1,101 @@
+{% load posts_tags %}
+<style>
+    #status-head{
+        color :red;
+        background-color : #c5c6c7;
+        background-color : transparent;
+        text-align : center;
+        font-family: 'Girassol', cursive;
+    }
+    #status-body{
+        color : lightgreen;
+        background-color : black;
+        font-size : 25px;
+    }
+</style>
+
+<div class="row">
+    {% if request.user.is_authenticated %}
+    <div class="col  col-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Your Total Posts : </h5>
+            <p class="card-body text-center mb-0 pb-4" id="status-body">{{ my_total_posts }}</p>
+        </div>
+    </div>
+    <div class="col  col-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Your Total Public Posts : </h5>
+            <p class="card-body text-center mb-0 pb-4" id="status-body">{{ my_total_public_posts }}</p>
+        </div>
+    </div>
+    <div class="col  col-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Total Posts in Draft : </h5>
+            <p class="card-body text-center mb-0 pb-4" id="status-body">{{ my_total_draft_posts }}</p>
+        </div>
+    </div>
+    <div class="col  col-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Total posts in Private : </h5>
+            <p class="card-body text-center mb-0 pb-4" id="status-body"> {{ my_total_private_posts }}</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="col col-12 col-sm-12 ">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Total Posts Available in Blog : </h5>
+            <p class="card-body text-center mb-0 pb-4" id="status-body">{% total_public_posts %}</p>
+        </div>
+    </div>
+    {% if request.user.is_superuser %}
+    <div class="col col-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Total Posts Including Private & Draft : </h5>
+            <p class="card-body text-center mb-0 pb-4" id="status-body" >{% total_posts %}</p>
+        </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Total Posts  Private & Draft : </h5>
+            <p class="card-body text-center mb-0 pb-4" id="status-body">{% total_private_posts %}</p>
+        </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Total Authors : </h5>
+            <p class="card-body text-center mb-0 pb-4" id="status-body" style="height:100px;">{% total_no_authors %}</p>
+        </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Total Users : </h5>
+            <p class="card-body text-center mb-0 pb-4" id="status-body">{% total_no_users %}</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="col  col-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Latest Posts : </h5>
+            <p class="card-body pl-5 mb-0 pb-4" id="status-body">
+
+                {% for post in latest_posts %}
+                <a href="{% url 'blog:post' post.slug %}">{{ forloop.counter }} . {{ post }}</a>
+                <br>
+                {% endfor %}</p>
+        </div>
+    </div>
+    <div class="col  col-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="card bg-light mb-5 p-0">
+            <h5 class="card-header " id="status-head">Top Commented Posts : </h5>
+            <p class="card-body text-center mb-0 pb-4" id="status-body">{{most_commented}}</p>
+             {% for post in most_commented %}
+                <a href="{% url 'blog:posts' %}">{{ forloop.counter }} . {{ post }}</a>
+                <br>
+                {% endfor %}</p>
+        </div>
+    </div>
+</div>

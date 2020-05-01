@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+<link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% block content %}
+
+<div class="container-fluid ">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 offset-auto mb-5">
+        <div class="col col-12 col-sm-12 col-md-6 col-lg-5">
+            <div class="card text-canter pl-5" id="mailus">
+                <h5 class="card-header text-center"> <span style="font-weight:900;font-family: 'Girassol', cursive;letter-spacing:2px;">Mail Us</span> </h5>
+                <div class="card-body text-left pl-5 ">
+                    <form method="POST" class="form-group">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <input type="submit" name="" val="Submit" class="btn btn-primary btn-md">
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" id="mailus">
+                <h5 class="card-header text-center mb-5"> <span style="font-weight:900;font-family: 'Girassol', cursive;letter-spacing:2px;">Our Office Address</span> </h5>
+                <div class="'card-body text-right pr-5 mr-5">
+                    <div class="card-title pl-5 ml-5">
+                        <address class="text-left ml-5 pl-5">
+
+                            <a href="mailto:my@gmail.com">Krishna Bellamkonda</a>.<br>
+                            Visit us at :<br>
+                            Madhapur, Hyderabad, Telangana 500081<br>
+                            our website : <a href="">krishna.com</a> <br>
+                            Box 564, Disneyland<br>
+                            USA
+                        </address>
+                    </div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7613.006847775043!2d78.38296138623045!3d17.435602736162725!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb339ecd8cf9b2ce5!2sZenQ!5e0!3m2!1sen!2sin!4v1587039628572!5m2!1sen!2sin"
+                            width="70%" height="250" frameborder="0" style="border:3px groove transparent;"
+                            allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

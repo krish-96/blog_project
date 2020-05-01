@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
+
+{% block title %} Posts List {% endblock title %}
+{% block content %}
+<div class="" id="sticky" >
+    <h4 class="card-header text-center ">All posts up to date</h4>
+</div>
+<div class="container">
+    <div class="row">
+        {% if object_list %}
+        <div class="row row-col-md-1">
+            <div class="col col-12 col-sm-12 col-md-12 col-lg-12 ">
+                 {% for post in object_list %}
+                <div class="card mt-4" style="max-width:100%;">
+                    <h5 class="card-header pt-3 pl-3 " id="p-header"> Post : <b>{{post.title}}</b></h5>
+                    <div class="card-title pl-5 pt-3 mb-0 pb-0" id="p-title">
+                        <h6> Posted by <span id="pc-name"">{{post.creator}}</span> on <span id="p-date"">{{post.published_date}}</span>
+                            <br>Last update : <span id="p-date">{{post.updated_date|timesince}}</span> ago
+                        </h6>
+                    </div>
+                    <div class="card-body mb-0 pb-0 pt-2 mt-0" id="p-body">
+                        <div class="row">
+                            <div class="col col-sm-2 col-md-2">
+
+                                <img class="rounded-circle" {% if post.post_pic %} src="{{post.post_pic.url}}" {% else %} src="{% static 'images/image-comingsoon.png' %}" {% endif %} alt='{{post.name}}'
+                                     width="100px" height="100px" title="{{post.title}}">
+                            </div>
+                            <div class="col col-9"> {{post.content|truncatewords:45}}
+                            </div>
+                        </div>
+                        <div class="text-right mr-5 pr-5 mb-4 pt-0">
+
+                            <a href="{% url 'blog:post' post.slug %}" class="btn btn-info btn-md" id="btn-post">Read
+                                More...</a>
+                            {% if user.is_superuser %}
+<!--                            <a href="{% url 'blog:update-post' post.slug %}" class="btn btn-warning btn-md" id="btn-post">Update-->
+<!--                                Post</a>-->
+                            <a href="{% url 'blog:delete-post' post.slug %}" class="btn btn-danger btn-md" id="btn-post">Delete
+                                Post</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <div class="card-body text-center">
+            <h4 class="alert" style="color:gold;"><b><i> No Posts yet!</i></b></h4>
+            {% if user.is_authenticated %}
+            <a href="{% url 'blog:create-post' %}" class="btn btn-primary btn-md" style="font-size:14px;font-weight:700;letter-spacing:1.5px;">Create a Post</a>
+            {% else %}
+            <a href="{% url 'blog:register' %}" class="btn btn-primary btn-md" style="font-size:14px;font-weight:700;letter-spacing:1.5px;">Register & Create a Post</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+<br>
+<!--{% if object_list %}-->
+<!--    {% include 'blog/pagination.html' %}-->
+<!--{% endif %}-->
+<br>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+<style>
+    #list{
+       font-weight:900;
+       font-size:18px;
+       letter-spacing:2px;
+    }
+</style>
+{% block title %} Krishna Blog Dashboard {% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+    {% include 'blog/status-user.html' %}
+</div>
+
+{% endblock %}

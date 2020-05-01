@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/authors.css' %}">
+
+{% block title %}  Profile - {{author.name|title}} {% endblock title %}
+{% block content %}
+
+<style>
+    #update{
+         color:black;
+
+    }
+    #update:hover{
+         color : darkgreen;
+        border-bottom:3px solid red;
+    }
+
+
+</style>
+
+<div class="" id="stricky">
+    <h4 class="card-header text-center"><b>Profile</span></b>
+    </h4>
+</div>
+<div class="container-fluid">
+    {% if author %}
+    <div class="row p-0 m-0 ">
+        <div class="col col-12 col-sm-12 col-md-4 col-lg-4 p-5">
+            <div class="card ">
+                <div class="card-body ">
+                    <img class="rounded-circle" {% if author.photo %} src="{{author.photo.url}}" {% else %}
+                         src="{% static 'images/new_user.png' %}" {% endif %} title="{{author.name}}"
+                         alt="{{author.name}}" height="300px"
+                         width="300px">
+                    <div class="card-body mb-0 pb-0 mt-2 pt-0" style="color:black;">
+                        <h6> Name : <br><span id="author-info">{{author.name|title}}</span></h6>
+                        <h6> D.O.B : <br><span id="author-info">{% if author.dob %} {{author.dob|linebreaks}} {% else %} No information. {% endif %}</span></h6>
+                        <h6> Contact Number : <br><span
+                                id="author-info">{% if author.phone_no %}{{author.phone_no|linebreaks}} {% else %} No information. {% endif %}</span></h6>
+                        <h6> Email : <br><span id="author-info">{% if author.email %}{{author.email|linebreaks}} {% else %} No information. {% endif %}</span></h6>
+                        <h6> Address : <br>
+                            <span id="author-info">{% if author.address %}{{author.address|linebreaks}} {% else %} No information. {% endif %}
+                            </span>
+                        </h6>
+                        <h6> Joined Date : <span id="author-info">{{author.joined_date|date|linebreaks}}</span>
+                        </h6>
+                    </div>
+
+                    <div class="card m-0 p-0" >
+                        <a href="{% url 'blog:update-author' request.user %}" class="btn btn-warning btn-md" id="update"
+                           style=""><span
+                                style="font-weight:600;letter-spacing:1px;font-size:14px;">Update Profile</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col col-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="row">
+                <div class="col col-12">
+                    <div class="card text-dark  mt-4 mb-4">
+
+                        <h3 class="card-header" id="a-head">About</h3>
+                        <div class="card-body" id="a-body">
+
+                            <p>
+                            {% if author.about %}{{author.about}} {% else %} No information. {% endif %}
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card mb-2 text-dark">
+                        <h5 class="card-header text-center" id="a-head">Total posts</h5>
+                        <div class="card-body text-center" id="status-body">
+                            <h5 style="color:red; font-weight:900;">{{total_posts}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-2 text-dark">
+                        <h5 class="card-header text-center" id="a-head">Total Comments</h5>
+                        <div class="card-body" id="status-body">
+                            <h5>Not implemented yet!</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card ">
+                        <h5 class="card-header text-center mb-2" id="a-head">Total Likes</h5>
+                        <div class="card-body" id="status-body">
+                            <h5>Not implemented yet!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card mt-4 ">
+                        <h5 class="card-header text-center" id="a-head">Most commented posts</h5>
+                        <div class="card-body" id="a-body">
+                            <h5>Comments Not implemented yet!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card mt-4  ">
+                        <h5 class="card-header text-center" id="a-head">Recent 5 posts</h5>
+                        <div class="card-body" id="a-body">
+                                                        {% if recent_posts %}
+                                                        {% for post in recent_posts %}
+                                                        <h6><b>{{forloop.counter}}.{{post.title}} : </b></h6>
+                                                        <p> {{post.content|truncatewords:30}}
+                                                            <a href="{% url 'blog:post' post.slug %}">Read full post</a></p>
+                                                        {% endfor %}
+                                                        {% else %}
+                                                        <p>No posts Yet!</p>
+                                                        {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card mt-4  ">
+                        <h5 class="card-header text-center" id="a-head">Posts List</h5>
+                        <div class="card-body" id="a-body">
+                            {% if post_list %}
+                            {% for post in post_list %}
+                            <h6><b>{{forloop.counter}}.{{post.title}} : </b></h6>
+                            <p> {{post.content|truncatewords:30}}
+                                <a href="{% url 'blog:post' post.slug %}">Read full post</a></p>
+                            {% endfor %}
+                            {% else %}
+                            <p>No posts yet!</p>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            <div class="card p-0 mt-4 bg-light" id="btn-posts">-->
+            <!--                <a href="{% url 'blog:authors' %}" class="btn btn-primary btn-sm"><span style="font-size:14px;letter-spacing:2px;">Authors list</span></a>-->
+            <!--            </div>-->
+        </div>
+
+    </div>
+    {% else %}
+    <div class="card-body text-center">
+        <h4 class="alert" style="color:gold;"><b><i> Something is wrong!</i></b></h4>
+    </div>
+    {% endif %}
+</div>
+
+<div class="card p-0 mt-4 bg-light" id="btn-posts">
+
+    <a href="{% url 'blog:authors' %}" class="btn btn-primary btn-sm"><span style="font-size:14px;letter-spacing:2px;">Authors list</span>
+    </a>
+
+    <a href="{% url 'blog:home' %}" class="btn btn-primary btn-sm"><span
+            style="font-size:14px;letter-spacing:2px;">Home</span>
+    </a>
+</div>
+
+<!--</div>-->
+<br>
+<br>
+{% endblock %}

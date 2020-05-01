@@ -1,0 +1,84 @@
+{% load static %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts  -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.15.0/css/mdb.min.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg " id="nav">
+    <a class="navbar-brand" href="{% url 'blog:home' %}"> Krishna Blog </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span style="color:black;" class="btn btn-sm">Menu</span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="{% url 'blog:home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'blog:dashboard' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'blog:contactus' %}" tabindex="-1" aria-disabled="true">Contact Us</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    More
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'blog:posts' %}">Posts List</a>
+                    <a class="dropdown-item" href="{% url 'blog:authors' %}">Authors List</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0" >
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
+            <button class="btn btn-outline-warning btn-sm my-2 my-sm-0" type="submit" ><span
+                    style="font-family: 'Trade Winds', cursive;">Search</span> <i class="fa fa-search"> </i></button>
+        </form>
+        &nbsp
+
+        <ul class="navbar-nav navbar-right mr-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    {{user.username}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'blog:user-profile' %}">My Profile</a>
+                    <a class="dropdown-item" href="{% url 'blog:user-settings' %}">My Settings</a>
+                    <a class="dropdown-item" href="{% url 'blog:my-posts' %}">My Posts</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'blog:logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i> LogOut</a>
+                </div>
+            </li>
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'blog:register' %}"> <i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'blog:login' %}"> <i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.15.0/js/mdb.min.js"></script>

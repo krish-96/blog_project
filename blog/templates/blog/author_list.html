@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
+
+{% block title %} Authors List {% endblock title %}
+{% block content %}
+<div class="" id="stricky">
+    <h4 class="card-header text-center" id="author-head"><b>Authors list</b></h4>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% if author_list %}
+        {% for author in author_list %}
+        <div class="col col-12 col-sm-6 col-md-4 col-lg-4 p-3">
+            <div class="card m-auto mt-5 mb-5" style="width: 18rem;">
+                <h5 class="card-header text-center pt-3 " id="p-header">{{author.name|upper}} </h5>
+                <img class="card-img-top" {% if author.photo %} src="{{author.photo.url}}" {% else %}
+                     src="{% static 'images/default-user.jpg' %}" {% endif %} alt='{{author.name}}' height="250px"
+                     width="250px" title="{{author.name}}"/>
+                <div class="card-body">
+                    <p class="card-text">{{author.name}}<br>{{author.dob}}</p>
+                    <a href="{% url 'blog:author' author.slug %}" class="btn btn-primary">More about {{author.name}}</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="card-body text-center">
+    <h4 class="alert" style="color:gold;"><b><i> No authors yet!</i></b></h4>
+</div>
+{% endif %}
+<br>
+{% if author_list %}
+{% include 'blog/pagination.html' %}
+{% endif %}
+<br>
+
+
+<br>
+{% endblock %}

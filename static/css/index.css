@@ -1,0 +1,118 @@
+body{
+    margin: 0px;
+    padding: 0px;
+/*    background-image: url("https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");*/
+       background : url('../images/timer.jpg') ;
+  background-repeat:no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+   /* opacity : 0.5;*/
+}
+nav{
+    color:#fff;
+    background-color: black;
+}
+.navbar-toggler{
+    color: white;
+    background-color: lightyellow;
+}
+.nav-link, .navbar-brand {
+    text-align : center;
+    color: white;
+    font-family: 'Trade Winds', cursive;
+}
+.dropdown-item{
+    color: white;
+    font-family: arial;
+}
+.dropdown-item:hover{
+    color: blue;
+    background-color: powderblue;
+    font-family: 'Trade Winds', cursive;
+    font-family: arial black;
+}
+.navbar-brand:hover{
+    color:gold;
+    font-size: 25px ;
+    padding-top: 10px;
+}
+.nav-link:hover{
+    color: yellow;
+    background-color: #FF6600;
+    background-color: black;
+    margin-right: 10px;
+    border-top : 6px solid #FF6600;
+    border-bottom : 2px solid #FF6600;
+    border-left : 1px solid green;
+    border-right : 1px solid green;
+    border-radius : 40% 0% ;
+   font-family : arial black;
+}
+#search{
+    border-radius: 5px;
+    font-weight : 700;
+    letter-spacing : 1px;
+}
+.welcome{
+    padding-top : 50px;
+    max-width:100%;
+    font-family: 'Yesteryear', cursive;
+    font-size:25px;
+    letter-spacing: 2px;
+    font-family: 'Girassol', cursive;
+
+    }
+
+.footer{
+    text-align : center;
+    color: #fff ;
+    background-color: black ;
+    padding: 3px 0px 4px 0px;
+    /*margin-top : auto;
+    position : fixed;
+    left : 0px;
+    bottom : 0px;*/
+    width : 100%;
+}
+
+.footer ul {
+    list-style:none;
+    min-width:100%;
+    color:#fff;
+}
+.footer ul li{
+    background-color: transparent;
+    display : inline;
+}
+.footer ul li a{
+    color:#fff;
+    font-size : 14px;
+    padding: 0 20px;
+    line-height: 20px;
+    outline : 0 ;
+}
+.footer-border {
+    margin: 30px 0 0;
+    padding: 50px 0 0;
+    background : url('../images/footer-white-border.png') top center no-repeat;
+    text-align: center;
+}
+.footer-border a{
+    color : #ffffff;
+    border : transparent;
+}
+.copyright {
+    margin-bottom: 20px;
+    padding-top: 30px;
+    min-height: 33px;
+}
+#msg{
+    color : #fff;
+    background-color : black;
+}
+#mailus{
+    color : #fff;
+    background-color: transparent;
+
+}

@@ -1,0 +1,31 @@
+#stricky{
+    color : #fff;
+    background-color: #5d5c63;
+    border-bottom : 1px solid white;
+    letter-spacing : 2.5px;
+    font-weight : 900;
+    font-family : times new roman;
+    font-family: 'Girassol', cursive;
+}
+#author-info{
+    color : purple;
+    font-size : 18px;
+}
+
+#a-head{
+     background-color: navy;
+     background-color: #c5c6c7;
+    color : #ff5722 ;
+    color : #2c003e ;
+    font-family : arial black;
+    font-size : 18px;
+}
+#a-body{
+    color:black;
+    color:#000000;
+}
+
+#status-body{
+    color:red;
+
+}

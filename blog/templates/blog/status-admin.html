@@ -1,0 +1,48 @@
+{% load posts_tags %}
+
+<style>
+    #status-head{
+    color :red;
+        background-color : #c5c6c7;
+        background-color : transparent;
+        text-align : center;
+        font-family: 'Girassol', cursive;
+    }
+    #status-body{
+        color : lightgreen;
+        background-color : black;
+        font-size : 25px;
+    }
+
+</style>
+<div class="col">
+    <div class="card mb-3 p-0">
+        <h4 class="card-header " id="status-head">Total Users : </h4>
+        <p class="card-body text-center mb-0 pb-4" id="status-body">{% total_no_users %}</p>
+    </div>
+</div>
+<div class="col">
+    <div class="card mb-3 p-0">
+        <h4 class="card-header " id="status-head">Total Authors : </h4>
+        <p class="card-body text-center mb-0 pb-4" id="status-body">{% total_no_authors %}</p>
+    </div>
+</div>
+<div class="col">
+    <div class="card mb-3 p-0">
+        <h4 class="card-header " id="status-head">Total Posts : </h4>
+        <p class="card-body text-center mb-0 pb-4" id="status-body">{% total_no_posts %}</p>
+    </div>
+</div>
+<div class="col">
+    <div class="card mb-3 p-0">
+        <h4 class="card-header " id="status-head">Today Total Posts: </h4>
+        <p class="card-body text-center mb-0 pb-4" id="status-body">10</p>
+    </div>
+</div>
+<div class="col">
+    <div class="card mb-3 p-0">
+        <h4 class="card-header " id="status-head">Today Total Users : </h4>
+        <p class="card-body text-center mb-0 pb-4" id="status-body">10</p>
+    </div>
+</div>
+

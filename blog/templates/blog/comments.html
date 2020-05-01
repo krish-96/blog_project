@@ -1,0 +1,42 @@
+{% load crispy_forms_tags %}
+
+<style>
+    #comment-form{
+        color : #fff ;
+        background-color : transparent;
+    }
+    #comments{
+        color : #fff ;
+        background-color : darkgreen;
+        background-color : #000000;
+    }
+
+</style>
+
+<div class="row">
+    <div class="col col-md-4 offset-auto " id="comment-form">
+        <h3 class="card-header">Leave a comment</h3>
+        <div class="card-body ">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <div class="text text-right">
+                        <input type="submit" value="Submit" name="" class="btn btn-primary btn-sm">
+                    </div>
+                </form>
+        </div>
+    </div>
+    <div class="col mb-5  m-3" id="comments">
+        <div class="card-body  p-3 " >
+            <h4>{{ comments.count }} comment{{ comments.count | pluralize }}</h4>
+            {% if comments %}
+            {% for comment in comments %}
+            <p> <h6><span style="color:red;font-weight:900;">{{comment.name|title}}</span> commented <span style="color:silver;">{{comment.created_date|timesince}}</span>
+            ago</h6>{{comment.body|linebreaks}} </p>
+            {% endfor %}
+            {% else %}
+            <p>This post don't have any comments yet!</p>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
+
+{% block title %} Post - {{post.title|title}} {% endblock title %}
+{% block content %}
+<div class="" id="sticky">
+    <h4 class="card-header text-center ">{{post.title|title}}</h4>
+</div>
+<div class="container" id="posts">
+    <div class="row mb-4" id="posts">
+        {% if post %}
+        <div class="row row-col-md-1">
+            <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body pl-5" id="p-body">
+                        <h6 id="p-title"> Posted by <span><a href="{% url 'blog:authors'  %}" id="pc-name">{{post.creator}}</a> </span>
+                            on <span id="p-date">{{post.published_date}}</span>
+                            <br>Last update : <span id="p-date">{{post.updated_date|timesince}}</span> ago<br>
+                            <a href="{% url 'blog:author' post.creator %}">Read more about {{post.creator}}</a>
+                        </h6>
+                        <div id="p-title" class="mb-0 pb-0 mt-0 pt-0">
+                            <div class="text-center mt-3">
+                                <img {% if post.post_pic %} src="{{post.post_pic.url}}" {% endif %} alt="" {{post.name}}"
+                                title="{{post.title}}" />
+                            </div>
+                            <p> {{post.content|linebreaks}} </p>
+                        </div>
+
+                    </div>
+
+                    <div class="card text-right p-0 m-0 bg-light" id="btn-posts">
+                        <a href="{% url 'blog:posts' %}" class="btn btn-primary btn-md"> <b>See all posts</b> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="card-body text-center">
+            <h4 class="alert" style="color:gold;"><b><i> Something is wrong!</i></b></h4>
+        </div>
+        {% endif %}
+    </div>
+
+    {% include 'blog/comments.html' %}
+</div>
+
+
+{% endblock %}
